@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/customborder"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/itemPreview"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:padding="5dp"
+        android:src="@drawable/nlkripp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+
+            android:text="nl_krippppppppppp"
+            android:maxWidth="165dp"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/itemViewers"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="205050"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/itemGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemTitle"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Hearthstone: Heroes of Warcraft"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/itemStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="TSM Kripp Chill Arena &amp; Ranked! MORE NEW XMAS SHIRTS = http://www.designbyhumans.com/shop/Kripp/ (✿☯‿☯✿)(✿☯‿☯✿)" />
+    </RelativeLayout>
+
+
+</LinearLayout>
