@@ -1,8 +1,7 @@
-package com.example.lukasz.myapplication;
+package com.example.lukasz.myapplication.TwitchApi;
 
 import android.util.Log;
 
-import com.example.lukasz.myapplication.TwitchApi.ITwitchApiService;
 import com.example.lukasz.myapplication.TwitchApiJson.FollowsResponse;
 import com.example.lukasz.myapplication.TwitchApiJson.FollowsStream_Type;
 import com.example.lukasz.myapplication.TwitchApiJson.OAuthResponse;
@@ -27,7 +26,7 @@ public class RequestManager {
     private Callback<OAuthResponse> oAuthCallback = new Callback<OAuthResponse>() {
         @Override
         public void onResponse(Response<OAuthResponse> response, Retrofit retrofit) {
-            _callback.onOAuthResponse(response.body());
+            _callback.onResponse(response.body());
         }
 
         @Override
@@ -40,7 +39,7 @@ public class RequestManager {
         @Override
         public void onResponse(Response<FollowsResponse> response, Retrofit retrofit) {
             Log.e("RetrofitCallback",response.message());
-            _callback.onLiveFollowedStreamResponse(response.body());
+            _callback.onResponse(response.body());
         }
 
         @Override

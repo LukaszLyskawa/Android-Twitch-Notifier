@@ -1,34 +1,35 @@
-package com.example.lukasz.myapplication;
+package com.example.lukasz.myapplication.Activities;
 
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.RemoteViews;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lukasz.myapplication.TwitchApi.IRequestManagerCallback;
+import com.example.lukasz.myapplication.TwitchApi.RequestManager;
+import com.example.lukasz.myapplication.FakeWebViewClient;
+import com.example.lukasz.myapplication.IWebViewCallback;
+import com.example.lukasz.myapplication.R;
+import com.example.lukasz.myapplication.Service.AlarmReceiver;
 import com.example.lukasz.myapplication.TwitchApiJson.FollowsResponse;
 import com.example.lukasz.myapplication.TwitchApiJson.OAuthResponse;
 
-import java.net.CookieManager;
+import javax.crypto.spec.OAEPParameterSpec;
 
 public class MainActivity extends Activity
 {
@@ -110,21 +111,17 @@ public class MainActivity extends Activity
         {
             requestManager.getDataFromOAuth(_accessToken, new IRequestManagerCallback() {
                 @Override
-                public void onOAuthResponse(final OAuthResponse body) {
+                public void onResponse(final Object body) {
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            _username=body.getToken().getUserName();
+                            OAuthResponse result = (OAuthResponse) body;
+                            _username=result.getToken().getUserName();
                             _textviewUsername.setText(_username);
                             _usernameLayout.setVisibility(RelativeLayout.VISIBLE);
                         }
                     });
-                }
-
-                @Override
-                public void onLiveFollowedStreamResponse(FollowsResponse body) {
-
                 }
 
                 @Override

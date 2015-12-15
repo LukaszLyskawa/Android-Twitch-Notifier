@@ -1,4 +1,4 @@
-package com.example.lukasz.myapplication;
+package com.example.lukasz.myapplication.Service;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -8,16 +8,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.example.lukasz.myapplication.TwitchApi.IRequestManagerCallback;
+import com.example.lukasz.myapplication.TwitchApi.RequestManager;
+import com.example.lukasz.myapplication.Activities.MainActivity;
+import com.example.lukasz.myapplication.R;
+import com.example.lukasz.myapplication.Activities.StreamsActivity;
 import com.example.lukasz.myapplication.TwitchApiJson.FollowsResponse;
 import com.example.lukasz.myapplication.TwitchApiJson.FollowsStreams;
-import com.example.lukasz.myapplication.TwitchApiJson.OAuthResponse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,15 +31,12 @@ public class TwitchBackgroundService extends IntentService
     private RequestManager requestManager;
 
     private IRequestManagerCallback _callback= new IRequestManagerCallback() {
-        @Override
-        public void onOAuthResponse(OAuthResponse body) {
-
-        }
 
         @Override
-        public void onLiveFollowedStreamResponse(FollowsResponse body) {
+        public void onResponse(Object body) {
             Log.e(TwitchBackgroundService.class.getName(), "DataReceived");
-            CreateOrUpdateNotification(body.getTotal(),body.getStreams());
+            FollowsResponse response = (FollowsResponse) body;
+            CreateOrUpdateNotification(response.getTotal(),response.getStreams());
         }
 
         @Override
@@ -64,7 +63,7 @@ public class TwitchBackgroundService extends IntentService
         Log.e("TwitchBackgroundService", "Service started");
         //DownloadTwitchData();
         String accessToken=preferences.getString("accessToken",null);
-        if(accessToken!=null||!(accessToken.isEmpty())){
+        if(accessToken!=null){
             //Log.e("TwitchBackgroundService","accessToken:"+accessToken);
             requestManager.getLiveFollowedStreams(accessToken,_callback);
         }
@@ -92,7 +91,7 @@ public class TwitchBackgroundService extends IntentService
         startMainActivity.addCategory(Intent.CATEGORY_LAUNCHER);
 
         //Log.e("TwitchBackgroundService","Create Notification Called, total="+total);
-        RemoteViews remoteViews = new RemoteViews(getPackageName(),R.layout.notification_widget);
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_widget);
         remoteViews.setTextViewText(R.id.notificationStreamsCount, "" + total);
         remoteViews.setOnClickPendingIntent(R.id.notificationSettingsButton, settingsPendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.buttonOpenStreams,streamsPendingIntent);

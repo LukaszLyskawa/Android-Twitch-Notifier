@@ -1,4 +1,4 @@
-package com.example.lukasz.myapplication;
+package com.example.lukasz.myapplication.Service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

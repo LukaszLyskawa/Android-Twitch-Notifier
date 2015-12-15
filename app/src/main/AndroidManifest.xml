@@ -11,22 +11,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".Service.AlarmReceiver"
             android:process=":remote" />
         <!--  -->
 
         <service
-            android:name=".TwitchBackgroundService"
+            android:name=".Service.TwitchBackgroundService"
             android:exported="false" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StreamsActivity"></activity>
+        <activity android:name=".Activities.StreamsActivity"></activity>
     </application>
 
 </manifest>
