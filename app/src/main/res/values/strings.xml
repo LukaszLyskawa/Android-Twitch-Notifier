@@ -3,7 +3,7 @@
     <string name="twitch_connect">Connect with Twitch</string>
     <string name="connected_username">Connected username:</string>
     <string name="logout">Logout</string>
-    <string name="serviceonoff">Service Off/On</string>
+    <string name="serviceonoff">Service</string>
     <string name="live_streams">Live streams:</string>
     <string name="notificationtitle">Twitch Streams</string>
     <string name="settings">Settings</string>

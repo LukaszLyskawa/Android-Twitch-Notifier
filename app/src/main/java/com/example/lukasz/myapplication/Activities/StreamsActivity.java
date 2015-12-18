@@ -1,5 +1,6 @@
 package com.example.lukasz.myapplication.Activities;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -28,7 +31,6 @@ public class StreamsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private ListView listView;
     private FollowsResponse response;
-
     private IFollowsDownloadCallback callback = new IFollowsDownloadCallback() {
         @Override
         public void onResponse(FollowsResponse data) {
@@ -62,8 +64,11 @@ public class StreamsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(itemClickListener);
         preferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         repeatAsyncTask(10000);
+
         Log.i("StreamsActivity","Created");
     }
+
+
     public void repeatAsyncTask(int timeout) {
         final Handler handler = new Handler();
         Timer timer = new Timer();

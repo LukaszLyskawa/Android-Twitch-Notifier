@@ -1,9 +1,12 @@
 package com.example.lukasz.myapplication;
 
+import android.animation.Animator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.InputStream;
@@ -18,6 +21,12 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     public DownloadImageTask(ImageView imageView) {
         this.imageView = imageView;
     }
+
+    @Override
+    protected void onPreExecute() {
+
+    }
+
 
     @Override
     protected Bitmap doInBackground(String... url) {
@@ -39,6 +48,8 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap result) {
+
         imageView.setImageBitmap(result);
+
     }
 }

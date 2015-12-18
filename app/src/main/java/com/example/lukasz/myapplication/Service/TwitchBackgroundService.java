@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -80,11 +81,14 @@ public class TwitchBackgroundService extends IntentService
 
         Intent settingsIntent = new Intent(getApplicationContext(),MainActivity.class);
 
-        PendingIntent settingsPendingIntent = PendingIntent.getActivity(getApplicationContext(),0,settingsIntent,Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent settingsPendingIntent = PendingIntent.getActivity(getApplicationContext(),0,settingsIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent streamsList = new Intent(getApplicationContext(),StreamsActivity.class);
 
-        PendingIntent streamsPendingIntent = PendingIntent.getActivity(getApplicationContext(),0,streamsList,Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        PendingIntent streamsPendingIntent = PendingIntent.getActivity(getApplicationContext(),0,streamsList,PendingIntent.FLAG_UPDATE_CURRENT);
+
+
 
         Intent startMainActivity = new Intent(getApplicationContext(),MainActivity.class);
         startMainActivity.setAction(Intent.ACTION_MAIN);
@@ -95,6 +99,8 @@ public class TwitchBackgroundService extends IntentService
         remoteViews.setTextViewText(R.id.notificationStreamsCount, "" + total);
         remoteViews.setOnClickPendingIntent(R.id.notificationSettingsButton, settingsPendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.buttonOpenStreams,streamsPendingIntent);
+
+
 
         Notification.Builder mNotifyBuilder = new Notification.Builder(this);
         Notification foregroundNote = mNotifyBuilder

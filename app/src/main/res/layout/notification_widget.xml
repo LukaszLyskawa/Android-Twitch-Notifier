@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_purple"
+    android:background="@color/colorPrimaryDark"
 
     android:orientation="vertical">
 
@@ -24,9 +24,10 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:elevation="5dp"
             android:id="@+id/notificationSettingsButton"
-            android:src="@drawable/ic_settings"
-            android:backgroundTint="@android:color/holo_purple"
+            android:src="@android:drawable/ic_menu_manage"
+            android:backgroundTint="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -58,7 +59,7 @@
     <Button
         android:id="@+id/buttonOpenStreams"
         android:text="@string/openstreams"
-        android:backgroundTint="@android:color/holo_purple"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:layout_width="match_parent"

@@ -39,14 +39,13 @@ public class MyArrayAdapter extends ArrayAdapter<FollowsStreams> {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.item_layout, parent, false);
         }
-
         FollowsStreams item = items.get(position);
+        convertView.findViewById(R.id.itemPreview).animate().rotationY(360).setDuration(500);
         new DownloadImageTask(((ImageView)convertView.findViewById(R.id.itemPreview))).execute(item.getPreview().getMedium());
         ((TextView) convertView.findViewById(R.id.itemTitle)).setText(item.getChannel().getDisplay_name());
         ((TextView) convertView.findViewById(R.id.itemViewers)).setText(withSuffix(item.getViewers()));
         ((TextView) convertView.findViewById(R.id.itemGame)).setText(item.getGame());
         ((TextView) convertView.findViewById(R.id.itemStatus)).setText(item.getChannel().getStatus());
-
         return convertView;
     }
 

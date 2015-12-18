@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
@@ -31,7 +32,7 @@ import com.example.lukasz.myapplication.TwitchApiJson.OAuthResponse;
 
 import javax.crypto.spec.OAEPParameterSpec;
 
-public class MainActivity extends Activity
+public class MainActivity extends AppCompatActivity
 {
 
     private Button _buttonTwitchConnect;
